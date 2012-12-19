@@ -1,0 +1,9 @@
+{
+	"name": "chikuwa",
+	"repo": "ameba-proteus/chikuwa.js",
+	"description": "front end utility",
+	"version": "0.0.1",
+	"keywords": ["utility"],
+	"scripts": ["chikuwa.js"],
+	"lincense": "MIT"
+}
