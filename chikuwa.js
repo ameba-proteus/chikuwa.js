@@ -8,7 +8,9 @@
 	var doc = w.document,
 	root = w.document.documentElement,
 	cssnum = {'column-count':1,columns:1,'font-weight': 1,'line-height':1,opacity:1,'z-index':1,zoom:1},
-	slice = Array.prototype.slice;
+	slice = function(args) {
+		return Array.prototype.slice.apply(args);
+	}
 	
 	// is string
 	function isString(o) { return typeof o === 'string' || o instanceof String; }
@@ -599,7 +601,7 @@
 			 * get the html of this tag
 			 */
 			html: function() {
-				var args = slice.apply(arguments)
+				var args = slice(arguments)
 				if (args.length === 0) {
 					var html = '';
 					this.each(function() {
@@ -614,7 +616,7 @@
 				}
 			},
 			inner: function() {
-				var args = slice.apply(arguments);
+				var args = slice(arguments);
 				if (args.length === 0) {
 					var html = '';
 					this.each(function() {
@@ -1023,7 +1025,7 @@
 	 */
 	$.image = function() {
 		var images = [];
-		var args = slice.apply(arguments);
+		var args = slice(arguments);
 		var cb = args.pop();
 		var cnt = args.length;
 		if (cnt === 0) cb();
@@ -1047,7 +1049,7 @@
 	 * @param callback
 	 */
 	$.load = function() {
-		var args = slice.apply(arguments);
+		var args = slice(arguments);
 		var cb = args.pop();
 		var cnt = args.length;
 		
@@ -1131,7 +1133,7 @@
 	 * check loaded resource
 	 */
 	$.loaded = function() {
-		var args = slice.apply(arguments);
+		var args = slice(arguments);
 		for (var i = 0; i < args.length; i++) {
 			if (!_loaded[args[i]])
 				return false;
@@ -1400,7 +1402,7 @@
 						}
 					}
 				} else {
-					var args = slice.apply(arguments);
+					var args = slice(arguments);
 					args.forEach(function(name) {
 						self.off(name);
 					});
@@ -1413,7 +1415,7 @@
 			if (!this._events) {
 				return;
 			}
-			var args = slice.apply(arguments);
+			var args = slice(arguments);
 			var name = args.shift();
 			log.debug('triggering',target.name,name,args);
 			var array = this._events[name];
@@ -1583,6 +1585,7 @@
 	$.isNumber = isNumber;
 	$.isArray = isArray;
 	$.escapeHtml = escapeHtml;
+	$.slice = slice;
 
 	// line extraction from stack trace
 	var lineregex = new RegExp("\/([^\/]+?:[0-9]+):");
@@ -1611,19 +1614,19 @@
 	// print leveled logs
 	var log = {
 		debug: function() {
-			printlog('DEBUG',slice.apply(arguments));
+			printlog('DEBUG',slice(arguments));
 		},
 		info: function() {
-			printlog('INFO',slice.apply(arguments));
+			printlog('INFO',slice(arguments));
 		},
 		warn: function() {
-			printlog('WARN',slice.apply(arguments));
+			printlog('WARN',slice(arguments));
 		},
 		error: function() {
-			printlog('ERROR',slice.apply(arguments));
+			printlog('ERROR',slice(arguments));
 		},
 		fatal: function() {
-			printlog('FATAL',slice.apply(arguments));
+			printlog('FATAL',slice(arguments));
 		}
 	};
 	$.log = log;
