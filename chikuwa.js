@@ -105,12 +105,13 @@
 	 *  c: context
 	 */
 	function chikuwa(selector,parent) {
+		var self = this;
 		if (isString(selector)) {
-			this.c = parent.querySelectorAll(selector);
+			self.c = parent.querySelectorAll(selector);
 		} else if (isArray(selector)) {
-			this.c = selector;
+			self.c = selector;
 		} else {
-			this.c = [selector];
+			self.c = [selector];
 		}
 	}
 	
@@ -1572,6 +1573,14 @@
 		},0);
 		w.addEventListener('orientationchange', hideAddressBar);
 	};
+
+	$.array = {
+		shuffle: function(o) {
+			for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+			return o;
+		}
+	};
+
 	$.hideAddressBar = hideAddressBar;
 	
 	w.$ = $;
