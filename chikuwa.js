@@ -1583,8 +1583,6 @@
 
 	$.hideAddressBar = hideAddressBar;
 	
-	w.$ = $;
-
 	// utility funtions
 	$.isString = isString;
 	$.isChikuwa = isChikuwa;
@@ -1656,5 +1654,13 @@
 				break;
 		}		
 	};
+
+	if (typeof define !== undefined && define.amd) {
+		define('chikuwa', [], function() {
+			return $;
+		});
+	} else {
+		w.$ = $;
+	}
 
 })(window);
